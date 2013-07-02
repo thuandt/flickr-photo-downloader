@@ -11,6 +11,13 @@ FlickRaw.shared_secret = "... Your shared secret ..."
 flickr.access_token    = "... Your access token ..."
 flickr.access_secret   = "... Your access secret ..."
 
+begin
+  login = flickr.test.login
+  puts "You are now authenticated as #{login.username}"
+rescue FlickRaw::FailedResponse => e
+  puts "Authentication failed : #{e.msg}"
+end
+
 options = { :input_file => nil, :output_file => nil,
             :url_list => [], :directory => ENV["HOME"] + "/Pictures"}
 
@@ -170,6 +177,8 @@ $url_list.each do |url|
             image_urls.push(FlickRaw.url_b(photo))
           elsif !FlickRaw.url_c(photo).nil?
             image_urls.push(FlickRaw.url_c(photo))
+          elsif !FlickRaw.url_z(photo).nil?
+            image_urls.push(FlickRaw.url_z(photo))
           end
         end
 
@@ -179,7 +188,7 @@ $url_list.each do |url|
       end
 
     ##### Get photo list of photoset #####
-    elsif match_group2.eql? "sets" && match_group4.nil?
+    elsif match_group2.eql? "sets" and match_group4.nil?
       f_photoset       = flickr.photosets.getInfo(:photoset_id => match_group3)
       f_photoset_id    = f_photoset["id"]
       f_photoset_count = f_photoset["photos"]
@@ -200,6 +209,8 @@ $url_list.each do |url|
             image_urls.push(FlickRaw.url_b(photo))
           elsif !FlickRaw.url_c(photo).nil?
             image_urls.push(FlickRaw.url_c(photo))
+          elsif !FlickRaw.url_z(photo).nil?
+            image_urls.push(FlickRaw.url_z(photo))
           end
         end
 
@@ -230,6 +241,8 @@ $url_list.each do |url|
             image_urls.push(FlickRaw.url_b(photo))
           elsif !FlickRaw.url_c(photo).nil?
             image_urls.push(FlickRaw.url_c(photo))
+          elsif !FlickRaw.url_z(photo).nil?
+            image_urls.push(FlickRaw.url_z(photo))
           end
         end
 
@@ -272,6 +285,8 @@ $url_list.each do |url|
           image_urls.push(FlickRaw.url_b(photo))
         elsif !FlickRaw.url_c(photo).nil?
           image_urls.push(FlickRaw.url_c(photo))
+          elsif !FlickRaw.url_z(photo).nil?
+            image_urls.push(FlickRaw.url_z(photo))
         end
       end
 
