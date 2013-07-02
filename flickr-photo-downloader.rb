@@ -154,7 +154,7 @@ $url_list.each do |url|
     break
   end
 
-  if match_group1.eql? "photos"
+  if match_group1.eql?("photos")
     ##### Get photolist of user #####
     if match_group2.nil?
       # flickr.people.lookUpUser(:url => url)
@@ -188,7 +188,7 @@ $url_list.each do |url|
       end
 
     ##### Get photo list of photoset #####
-    elsif match_group2.eql? "sets" and match_group4.nil?
+    elsif match_group2.eql?("sets") and match_group4.nil?
       f_photoset       = flickr.photosets.getInfo(:photoset_id => match_group3)
       f_photoset_id    = f_photoset["id"]
       f_photoset_count = f_photoset["photos"]
@@ -220,7 +220,7 @@ $url_list.each do |url|
       end
 
     ##### Get photo list of user favorites #####
-    elsif match_group2.eql? "favorites"
+    elsif match_group2.eql?("favorites")
       fav_user         = flickr.people.getInfo(:url => url)
       fav_user_id      = fav_user["id"]
       fav_photo_count  = flickr.favorites.getList(:user_id => fav_user_id,
@@ -263,7 +263,7 @@ $url_list.each do |url|
       image_urls.clear
     end
   ##### Get individual photo url #####
-  elsif match_group1.eql? "groups"
+  elsif match_group1.eql?("groups")
     g_group        = flickr.urls.lookupGroup(:url => url)
     g_group_id     = g_group["id"]
     g_group_name   = g_group["groupname"]
