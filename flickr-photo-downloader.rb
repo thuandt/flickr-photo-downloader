@@ -1,3 +1,8 @@
+#!/usr/bin/env ruby
+# Filename: flick-photo-downloader.rb
+# Description: Easily download all the photos from a flickr: group pool,
+#              photostream, photosets and favorites
+
 require "fileutils"
 require "optparse"
 require "flickraw"
