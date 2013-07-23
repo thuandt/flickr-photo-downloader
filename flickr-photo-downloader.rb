@@ -133,7 +133,7 @@ end
 # http://www.flickr.com/photos/{user-id}/sets/ - all photosets
 # http://www.flickr.com/photos/{user-id}/sets/{photoset-id} - single photoset
 
-flickr_regex = /http[s]?:\/\/(?:www|secure).flickr.com\/(groups|photos)\/[\w@]+(?:\/(\d{10}|sets|pool|favorites)[\/]?)?(\d{17})?(?:\/with\/(\d{10}))?[\/]?$/
+flickr_regex = /http[s]?:\/\/(?:www|secure).flickr.com\/(groups|photos)\/[\w@-]+(?:\/(\d{10}|sets|pool|favorites)[\/]?)?(\d{17})?(?:\/with\/(\d{10}))?[\/]?$/
 
 # Photostream Regex
 # photo_stream_regex  = /http[s]?:\/\/(?:www|secure).flickr.com\/photos\/([\w@]+)[\/]?$/
