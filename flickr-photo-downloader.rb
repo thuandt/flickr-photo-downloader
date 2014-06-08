@@ -259,11 +259,19 @@ $url_list.each do |url|
     ##### Get individual photo url #####
     else
       if match_group4.nil?
-        picture_info = flickr.photos.getInfo(:photo_id => match_group2)
+        photo = flickr.photos.getInfo(:photo_id => match_group2)
       else
-        picture_info = flickr.photos.getInfo(:photo_id => match_group4)
+        photo = flickr.photos.getInfo(:photo_id => match_group4)
       end
-      image_urls.push(picture_info["url_o"])
+      if !photo["url_o"].nil?
+        image_urls.push(photo["url_o"])
+      elsif !FlickRaw.url_b(photo).nil?
+        image_urls.push(FlickRaw.url_b(photo))
+      elsif !FlickRaw.url_c(photo).nil?
+        image_urls.push(FlickRaw.url_c(photo))
+      elsif !FlickRaw.url_z(photo).nil?
+        image_urls.push(FlickRaw.url_z(photo))
+      end
       save_image(image_urls)
       image_urls.clear
     end
