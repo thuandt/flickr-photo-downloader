@@ -87,8 +87,6 @@ def download(image_urls)
   puts "Downloading #{image_urls.count} photos from flickr with concurrency=#{concurrency} ..."
   FileUtils.mkdir_p($directory)
 
-  already_had = 0
-
   image_urls.each_slice(concurrency).each do |group|
     threads = []
     group.each do |url|
@@ -96,10 +94,8 @@ def download(image_urls)
         begin
           file = Mechanize.new.get(url)
           filename = File.basename(file.uri.to_s.split('?')[0])
-
-          if File.exists?("#{$directory}/#{filename}")
+          if File.exists?("#{$directory}/#{filename}") and Mechanize.new.head(url)["content-length"].to_i === File.stat("#{directory}/#{filename}").size.to_i
             puts "Already have #{url}"
-            already_had += 1
           else
             puts "Saving photo #{url}"
             file.save_as("#{$directory}/#{filename}")
