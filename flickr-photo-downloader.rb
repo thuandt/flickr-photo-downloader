@@ -3,10 +3,11 @@
 # Description: Easily download all the photos from a flickr: group pool,
 #              photostream, photosets and favorites
 
-require "fileutils"
-require "optparse"
-require "flickraw"
-require "mechanize"
+require 'rubygems'
+require 'bundler'
+require 'fileutils'
+require 'optparse'
+Bundler.require
 
 # Get your API Key: https://secure.flickr.com/services/apps/create/apply
 FlickRaw.api_key       = "... Your API key ..."
