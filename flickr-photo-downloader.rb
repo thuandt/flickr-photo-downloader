@@ -95,7 +95,7 @@ def download(image_urls)
         begin
           file = Mechanize.new.get(url)
           filename = File.basename(file.uri.to_s.split('?')[0])
-          if File.exists?("#{$directory}/#{filename}") and Mechanize.new.head(url)["content-length"].to_i === File.stat("#{directory}/#{filename}").size.to_i
+          if File.exists?("#{$directory}/#{filename}") and Mechanize.new.head(url)["content-length"].to_i === File.stat("#{$directory}/#{filename}").size.to_i
             puts "Already have #{url}"
           else
             puts "Saving photo #{url}"
